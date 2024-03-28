@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +23,7 @@ public class CameraRotation : MonoBehaviour
 
         var newAngleX = CameraAxisTransform.localEulerAngles.x - Time.deltaTime * RotationSpeed * Input.GetAxis("Mouse Y");
         if(newAngleX>180){
+            
             newAngleX-=360;
         }
         newAngleX = Mathf.Clamp(newAngleX, minAngle, maxAngle);
