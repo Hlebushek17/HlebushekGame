@@ -29,7 +29,11 @@ public class Fireball : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         DamageEnemy(collision);
-        DestroyFireball();
+        if(collision.gameObject.CompareTag("Player") == false) 
+        {   
+            DestroyFireball();
+        }
+
     }
 
     private void DamageEnemy(Collision collision)

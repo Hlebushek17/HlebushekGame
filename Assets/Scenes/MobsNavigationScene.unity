@@ -270,6 +270,8 @@ MonoBehaviour:
   player: {fileID: 1790604623}
   viewAngle: 90
   damage: 30
+  attackDistance: 1
+  animator: {fileID: 0}
 --- !u!195 &137123601
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -305,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 100
+  animator: {fileID: 0}
 --- !u!136 &137123603
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -550,6 +553,11 @@ PrefabInstance:
     - target: {fileID: 3703262430167712628, guid: 9bec117b9c9105f4d8207bb97c60609d,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703262430167712628, guid: 9bec117b9c9105f4d8207bb97c60609d,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3703262430167712631, guid: 9bec117b9c9105f4d8207bb97c60609d,
@@ -1123,6 +1131,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 741f73214c8e59045b42ebac4be91444, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0a35bbd8180a36e4f9128cea2e1884da, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 741f73214c8e59045b42ebac4be91444, type: 3}
 --- !u!4 &1264067751 stripped

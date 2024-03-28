@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Animator animator;
+
     private float _fallVelocity = 0;
     
     public float gravity = 9.8f;
@@ -12,8 +12,9 @@ public class PlayerController : MonoBehaviour
     public float  jumpForce;
     public float speed;
 
-    private Vector3 _moveVector;
+    public Animator animator;
 
+    private Vector3 _moveVector;
 
     private CharacterController _characterController;
 
@@ -25,41 +26,48 @@ public class PlayerController : MonoBehaviour
 
     void Update(){
 
-        _moveVector = Vector3.zero;
+        MovementUpdate();
+        JumpUpdate();
 
-        //W
+    }
+
+    private void MovementUpdate()
+    {
+        _moveVector = Vector3.zero;
+        var runDirection = 0;
+
+        //W1
         if(Input.GetKey(KeyCode.W)){
             _moveVector += transform.forward;
+            runDirection = 1;
         }
 
-        //A
+        //A4
         if(Input.GetKey(KeyCode.A)){
             _moveVector -= transform.right;
+            runDirection = 4;
         }
 
-        //S
+        //S2
         if(Input.GetKey(KeyCode.S)){
             _moveVector -= transform.forward;
+            runDirection = 2;
         }
 
-        //D
+        //D3
         if(Input.GetKey(KeyCode.D)){
             _moveVector += transform.right;
+            runDirection = 3;
         }
 
-        if(_moveVector != Vector3.zero)
-        {
-            animator.SetBool("isRun",true);
-        }
-        else
-        {
-            animator.SetBool("isRun",false);
-        }                           
+        animator.SetInteger("rundirection",runDirection);
+    }
 
-        //Jump
-        if(Input.GetKeyDown(KeyCode.Space) && _characterController.isGrounded){
+    private void JumpUpdate()
+    {
+        if (Input.GetKey(KeyCode.Space) && _characterController.isGrounded)
+        {
             _fallVelocity = -jumpForce;
-            animator.SetBool("isGrounded",false);
         }
     }
 
@@ -71,9 +79,5 @@ public class PlayerController : MonoBehaviour
         _fallVelocity += gravity * Time.fixedDeltaTime;
          _characterController.Move(Vector3.down * _fallVelocity * Time.fixedDeltaTime);
 
-         if(_characterController.isGrounded){
-            _fallVelocity = 0;
-            animator.SetBool("isGrounded",true);
-         }
     }
 }
